@@ -1,10 +1,6 @@
 
-    
 @extends('pegawais.layout')
-
 @section('content')
-
-
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
   
@@ -16,9 +12,7 @@
 
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script>
 
-
-
-    
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/fixedcolumns/4.1.0/js/dataTables.fixedColumns.min.js"></script>
 
 
 <style>
@@ -36,7 +30,7 @@
         z-index: 20;
         min-height: 30px;
         height: 30px;
-        text-align: left;
+        text-align: center;
     }
     tr:nth-child(even){
         background-color: #f2f2f2;
@@ -81,6 +75,8 @@
 </style>
 
 <style>
+
+
      .freeze-table{
         border-spacing: 0ch;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -97,8 +93,7 @@
         min-height: 30px;
         height: 30px;
         text-align: left;
-    
-        white-space: pre-wrap !important;
+        white-space: nowrap;
         text-align: center;
         background-color: white;
         color: black;
@@ -150,18 +145,16 @@
    .first-column.header {
        background-color: aliceblue;
     }
+    
+
+    
      </style>
 
-
-
-     <body >
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
-        
+       
         <div class="container">
-        <div class="row">
-                
+        <div class="row">       
        <div class="col-md-12">
-    <body >
         <!--
         <div class="">
             <img src="{{ asset('poto/download.png')}}">
@@ -208,9 +201,9 @@
        
        
        <!--<div style="overflow: scroll;">-->
-           
-        
-        
+      
+        <div class="dataTables_wrapper">
+    <!--<div class="table-responsive">-->
        <table id="datasip" class="table table-bordered table-striped ">
         <thead>                   
             <tr class="">
@@ -249,7 +242,7 @@
             @foreach ($pegawais as $pegawai)
             <tr id="side{{$pegawai->id}}"> 
                 <td class="fourth-column table-info">{{ $nomor++ }}</td>
-                <td class="third-column table-info"><img width="120px" src="{{ url('/data_file/'.$pegawai->foto)}}"> </td>
+                <td class="third-column table-info"><img width="120px" src="{{ asset('/data_file/'.$pegawai->foto)}}"> </td>
                 <td class="first-column table-info">{{ $pegawai->nama }}</td>
                 <td class="second-column table-info">{{ $pegawai->jabatan_id}}</td>
                 <td class="">{{ $pegawai->jk }}</td>
@@ -273,11 +266,15 @@
                 <td class="col-3">{{ $pegawai->tanggalmasuk}}</td>
                 <td class="col-3">{{ $pegawai->berakhir }}</td>
                 <td>
-               <ul>
+               <ul style="text-align: left;">
                     @foreach($pegawai->penghargaanfungsi as $p)
                     <li>{{$p->penghargaansip}}</li>
                     @endforeach
                 </ul>
+                </td>
+
+                <td>
+                   {{$pegawai->penghargaanfungsi->penghargaan->penghargaansip}} 
                 </td>
                 
                
@@ -298,7 +295,7 @@
                     
 
                        
-                       <a href="javascript:void(0)" onclick="destroy({{ $pegawai->id }})" class="btn btn-danger">Delete</a>
+                       <a href="javascript:void(0)" onclick="destroy({{ $pegawai->id }})" class="btn btn-danger glyphicon glyphicon-trash"></a>
 
                     </form>
                 </td>
@@ -307,37 +304,41 @@
         </table>
         {{ $pegawais->links()}}
         </div>
-    </body>
-    
-    
-    
     
     <script>
-        $(document).ready(function () {
-        $('#datasip').DataTable();
-        });
+      $(document).ready(function() {
+        var table = $('#datasip').DataTable( {
+        scrollY:        "500px",
+        scrollX:        true,
+        scrollCollapse: true,
+        paging:         false,
+        fixedColumns:   {
+            left: 0,
+            right: 0
+        }
+      
+       
+    } );
+} );
    // delete
    function destroy(id)
-                        {
-                            if(confirm("apakah yakin mau dihapus"))
-                            {
-                                $.ajax({
-                                    url:'/delete/'+id,
-                                    type:'DELETE',
-                                    data:{
-                                        _token : $("input[name=_token]").val()
-                                    },
-                                    success:function(response)
-                                    {
-                                        $("#side"+id).remove();
-                                    }
-                                });
-                            }
-                        }
+    {
+        if(confirm("apakah yakin mau dihapus"))
+        {
+            $.ajax({
+                url:'/delete/'+id,
+                type:'DELETE',
+                data:{
+                    _token : $("input[name=_token]").val()
+                },
+                success:function(response)
+                {
+                    $("#side"+id).remove();
+                }
+            });
+        }
+    }
 
-                       
-
-                      
     </script>
     @endsection
 

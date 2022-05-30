@@ -18,7 +18,7 @@ class PegawaisController extends Controller
      */
     public function index(Request $request)
     {
-        $pegawais = pegawai::with('jabatanfungsi', 'bankfungsi')->paginate(20);
+        $pegawais = pegawai::with('jabatanfungsi', 'bankfungsi')->paginate(100);
         return view('pegawais.index', compact('pegawais')); 
     }
 
@@ -68,16 +68,16 @@ class PegawaisController extends Controller
             'tanggalmasuk' => 'required',
             'berakhir' => 'required'
         ]);
-        $file = $request->file('foto');
-        $nama_file = time()."_".$file->getClientOriginalName();
-        $tujuan_upload = 'data_file';
-        $file->move($tujuan_upload,$nama_file);
+      // $file = $request->file('foto');
+        //$nama_file = time()."_".$file->getClientOriginalName();
+        //$tujuan_upload = 'data_file';
+        //$file->move($tujuan_upload,$nama_file);
 
-       // $foto = $request->file('foto');
-        //$foto->storeAs('public/data_file', $foto->hashName());
+      $foto = $request->file('foto');
+       $foto->storeAs('/data_file/', $foto->hashName());
 
         $pegawai = pegawai::create([
-            'foto' => $nama_file,
+            'foto' =>$foto->hashName(),
             'nama' => $request->nama,
             'jabatan_id' => $request->jabatan_id,
             'jk' => $request->jk,
@@ -171,43 +171,76 @@ class PegawaisController extends Controller
             'berakhir' => 'required'   
         ]);
         
-       
+        $pegawai = pegawai::findOrFail($pegawai->id);
+
+        if($request->file('foto') == "") {
+    
+            $pegawai->update([
+            'nama' => $request->nama,
+            'jabatan_id' => $request->jabatan_id,
+            'jk' => $request->jk,
+            'noktp' => $request->noktp,
+            'npwp' => $request->npwp,
+            'nobpjs' => $request->nobpjs,
+            'nokk' => $request->nokk,
+            'tempatlahir' => $request->tempatlahir,
+            'ttl' => $request->ttl,
+            'alamatktp' => $request->alamatktp,
+            'domisili' => $request->domisili,
+            'gaji' => $request->gaji,
+            'tanggalgaji' => $request->tanggalgaji,
+            'norek' => $request->norek,
+            'bank' => $request->bank,
+            'email' => $request->email,
+            'nohp' => $request->nohp,
+            'status' => $request->status,
+            'tanggungan' => $request->tanggungan,
+            'awalmasuk' => $request->awalmasuk,
+            'tanggalmasuk' => $request->tanggalmasuk,
+            'berakhir' => $request->berakhir,
+            ]); 
+    
+        } else {
+    
+            //hapus old image
+            Storage::disk('local')->delete('/data_file/'.$pegawai->foto);
+    
+            //upload new image
+            $foto = $request->file('foto');
+            $foto->storeAs('/data_file/', $foto->hashName());
+    
+            $pegawai->update([
+            'foto'=> $foto->hashName(),
+            'nama' => $request->nama,
+            'jabatan_id' => $request->jabatan_id,
+            'jk' => $request->jk,
+            'noktp' => $request->noktp,
+            'npwp' => $request->npwp,
+            'nobpjs' => $request->nobpjs,
+            'nokk' => $request->nokk,
+            'tempatlahir' => $request->tempatlahir,
+            'ttl' => $request->ttl,
+            'alamatktp' => $request->alamatktp,
+            'domisili' => $request->domisili,
+            'gaji' => $request->gaji,
+            'tanggalgaji' => $request->tanggalgaji,
+            'norek' => $request->norek,
+            'bank' => $request->bank,
+            'email' => $request->email,
+            'nohp' => $request->nohp,
+            'status' => $request->status,
+            'tanggungan' => $request->tanggungan,
+            'awalmasuk' => $request->awalmasuk,
+            'tanggalmasuk' => $request->tanggalmasuk,
+            'berakhir' => $request->berakhir,
+            ]);
+
+        }
         
 
 
 
-        //if($request->file('foto') == "")
-    	//{
-    	//	$produk->gambar=$produk->gambar;
-
-    //	}
-    	//else
-    	//{
-
-    	//$filename = time(). '.png';
-    	//$request->file('foto')->storeAs('public/data_file', $filename);
-	   //	$produk->gambar = $filename;
-	//   }
-    //	$produk->save(); 
-
-   // $id = $request->idPegawai;
-     //$pegawais = pegawai::where('id', $id)->get();    
-    //if($request->foto){
-      //     Storage::delete($pegawais->foto);
-        //   $foto = $request->file('foto')->store("/data_file/");
-    //}else{
-      //     $foto = $pegawai->foto;
-    //}
-
-   
-       // if($pegawai){
-         //   return redirect()->route('pegawais.index')->with(['success' => 'Berhasil']);
-
-        //}else{
-
-          //  return rederect()->route('pegawais.index')->with(['error' => 'Error']);
-
-        //}
+        
 
         $pegawai->penghargaanfungsi()->attach($request->paket);
 

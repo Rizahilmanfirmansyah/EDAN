@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PegawaisController;
+use App\Http\Controllers\mencoba;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,11 +31,20 @@ Route::get('/coba', function(){
 
 });
 
+
+
+Route::get('/home', function(){
+    return view('template.home');
+
+});
+
 Route::get('/search', [PegawaisController::class, 'search'])->name('search');
 
 
 
 Route::delete('/delete/{id}',[PegawaisController::class,'delete'])->name('delete');
+
+Route::get('/yoi', [mencoba::class, 'index'])->name('welcome');
 
 
 

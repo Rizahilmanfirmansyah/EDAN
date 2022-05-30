@@ -12,4 +12,13 @@ class pegawai_penghargaan extends Model
     protected $fillable = [
         "datapegawai_id", "penghargaan_id"
     ];
+
+    public function pegawai()
+    {
+        return $this->belongsTo(pegawai::class);
+    }
+    public function penghargaan()
+    {
+        return $this->belongsTo(penghargaan::class);
+    }
 }

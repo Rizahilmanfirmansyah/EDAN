@@ -26,21 +26,26 @@ class pegawai extends Model
     {
         return $this->belongsTo(status::class, 'status');
     }
-
+//onetomany
     public function bankfungsi()
     {
         return $this->belongsTo(bank::class, 'bank');
     }
+//Manytomany
+   // public function penghargaanfungsi()
+    //{
+      //  return $this->belongsToMany(penghargaan::class);
+    //}
 
-    public function penghargaanfungsi()
-    {
-        return $this->belongsToMany(penghargaan::class);
-    }
+   public function penghargaanfungsi()
+     {
+         return $this->hasMany(pegawai_penghargaan::class);
+     }
 
-    public function pegawai_penghargaan()
-    {
-        return $this->belongsToMany(pegawai_penghargaan::class);
-    }
+  //  public function pegawai_penghargaan()
+    //{
+      //  return $this->belongsToMany(pegawai_penghargaan::class);
+    //}
 
    // /**
      //* The roles that belong to the pegawai

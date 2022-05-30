@@ -18,4 +18,12 @@ class penghargaan extends Model
     {
         return $this->belongsToMany(pegawai::class);
     }
+
+    public function penghargaan()
+    {
+        return $this->hasMany(pegawai_penghargaan::class);
+    }
+
+    // $pegawai->penghargaanfungsi->penghargaan->penghargaansip
+   
 }

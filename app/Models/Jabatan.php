@@ -18,7 +18,6 @@ class Jabatan extends Model
     {
         return $this->hasMany(pegawai::class, 'id', 'jabatansip');
 
-        
     }
 
 }

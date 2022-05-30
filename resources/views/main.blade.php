@@ -29,21 +29,13 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="">MyBimbel</a>
-                <a class="navbar-brand hidden" href="">M</a>
+                <img  class="user-avatar rounded-circle" src="https://cdn.techinasia.com/data/images/mbKJWlY9eLszoPKXLsvhJMe7KIvMaLGBIw0G17ET.png">
+                <a class="navbar-brand" href="">Bimbel</a>
+                <a class="navbar-brand hidden" href="">B</a>
             </div>
-
-           <div id="main-menu" class="main-menu collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href=""> <i class="menu-icon fa fa-dashboard"></i>Home </a>
-                    </li>
-                    <li>
-                        <a href=""> <i class="menu-icon fa fa-puzzle-piece"></i>Jenjang </a>
-                    </li>
-                    <li>
-                        <a href=""> <i class="menu-icon fa fa-puzzle-piece"></i>Program </a>
-                    </li>
+        
+           @include('menumain')
+                
 
                 
             </div><!-- /.navbar-collapse -->

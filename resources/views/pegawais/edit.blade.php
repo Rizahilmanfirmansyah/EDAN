@@ -11,9 +11,9 @@
    
     <div class="row justify-content-center align-items-center">
         <div class="card " style="width: 50rem;">
-            <i class="bi bi-person-fill"></i>
             <div class="card-header">
-            EDIT PEGAWAI
+                <i class="bi bi-wrench-adjustable"></i>
+           &nbsp; EDIT PEGAWAI
             </div>
             <div class="card-body">
                 @if ($errors->any())
@@ -34,15 +34,15 @@
                     <input type="text" name="nama" class="form-control" id="nama" value="{{$pegawai->nama}}" aria-describedby="nama" placeholder="Masukkan Nama">
                 </div>
                 
-               
-             <!-- <p><img width="120px" src="{{ url('/data_file/',$pegawai->foto)}}"></p>
+              <!-- 
+             <img width="120px" src="{{ url('/data_file/',$pegawai->foto)}}"></p>
                
                <p> <input type="text" class="form-control" value="{{$pegawai->foto}}"></p>
                 <div class="form-group">
                     <label for="foto">Lampirkan Foto</label>
                     <p><input type="file"  name="foto" id="foto"></p>
-                </div>-->
-                
+                </div>
+            -->
                 
                 <!--
                 <input type="text"  class="form-control" value="{{ $pegawai->foto }}" name="foto">
