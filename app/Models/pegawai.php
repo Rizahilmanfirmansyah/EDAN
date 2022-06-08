@@ -32,15 +32,15 @@ class pegawai extends Model
         return $this->belongsTo(bank::class, 'bank');
     }
 //Manytomany
-   // public function penghargaanfungsi()
-    //{
-      //  return $this->belongsToMany(penghargaan::class);
-    //}
+    public function penghargaanfungsi()
+    {
+        return $this->belongsToMany(penghargaan::class);
+    }
 
-   public function penghargaanfungsi()
-     {
-         return $this->hasMany(pegawai_penghargaan::class);
-     }
+  // public function penghargaanfungsi()
+    // {
+      //   return $this->hasMany(pegawai_penghargaan::class);
+     //}
 
   //  public function pegawai_penghargaan()
     //{

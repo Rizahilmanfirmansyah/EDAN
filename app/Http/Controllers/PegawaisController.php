@@ -170,7 +170,6 @@ class PegawaisController extends Controller
             'tanggalmasuk' => 'required',
             'berakhir' => 'required'   
         ]);
-        
         $pegawai = pegawai::findOrFail($pegawai->id);
 
         if($request->file('foto') == "") {
@@ -236,6 +235,7 @@ class PegawaisController extends Controller
             ]);
 
         }
+    
         
 
 

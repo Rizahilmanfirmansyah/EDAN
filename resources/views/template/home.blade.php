@@ -512,9 +512,18 @@
     </div>
 </body>
 <script>
-    $(document).ready(function () {
-    $('#oke').DataTable();
-});
+   $(document).ready(function() {
+        var table = $('#datasip').DataTable( {
+        scrollY:        "500px",
+        scrollX:        true,
+        scrollCollapse: true,
+        paging:         true,
+        fixedColumns:   {
+            left: 0,
+            right: 0
+        }
+    } );
+} );
 </script>
 </html>
 @endsection

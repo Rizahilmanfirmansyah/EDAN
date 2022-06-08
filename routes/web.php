@@ -48,3 +48,6 @@ Route::get('/yoi', [mencoba::class, 'index'])->name('welcome');
 
 
 
+
+
+

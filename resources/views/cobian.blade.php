@@ -1,4 +1,6 @@
-@extends('main')
+@extends('template.main')
+
+@section('isi')
 
 
 
@@ -21,7 +23,7 @@
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script>
 
 </head>
-@section('conten')
+
 <body>
     <div class="container">
     <table id="oke" class="table table-striped table-primary" style="width:100%">

@@ -1,5 +1,7 @@
 
 @extends('pegawais.layout')
+
+
 @section('content')
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
@@ -13,6 +15,8 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script>
 
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/fixedcolumns/4.1.0/js/dataTables.fixedColumns.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
 
 
 <style>
@@ -72,10 +76,10 @@
         height: 300px;
         overflow: scroll;
     }
-</style>
 
-<style>
+    </style>
 
+   <style>
 
      .freeze-table{
         border-spacing: 0ch;
@@ -92,7 +96,7 @@
         z-index: 20;
         min-height: 30px;
         height: 30px;
-        text-align: left;
+        text-align: center;
         white-space: nowrap;
         text-align: center;
         background-color: white;
@@ -122,14 +126,14 @@
     }
    .first-column {
        position: sticky;
-       left: 180px;
+       left: 196px;
        width: 140px;
        background-color: aliceblue;
        white-space: nowrap;
     }
   .third-column {
        position: sticky;
-       left: 48px;
+       left: 60px;
        width: 140px;
        background-color: aliceblue;
        white-space: nowrap;
@@ -145,14 +149,9 @@
    .first-column.header {
        background-color: aliceblue;
     }
-    
-
-    
      </style>
 
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" />
-       
-        <div class="container">
+       <div class="container">
         <div class="row">       
        <div class="col-md-12">
         <!--
@@ -160,19 +159,24 @@
             <img src="{{ asset('poto/download.png')}}">
         </div>
     -->
+        
+        <!--
         <div class="row">
             <div class="col-lg-12 margin-tb mt-3 mb-3">
                 <div class="text-center">
-                    <h2>KELOLA DATA PEGAWAI</h2>
+                    <h2>  KELOLA DATA PEGAWAI </h2>
                 </div>
             <div class="col-mb-3">
                 <div class="text-left">
-                    <a class="btn btn-success" href="{{ route('pegawais.create') }}">Tambah Pegawai</a>
+                    <input type="submit" id="submit" value="submit" href="{{route('pegawais.create')}}">
+                  
+                    <a class="btn btn-success"  href="{{ route('pegawais.create') }}">Tambah</a>
+                 
                 </div> 
             </div> 
             </div>
         </div>
-        
+        -->
      <!--  <div class="row">
          <div class="col-mb-3">
            <form action="/search" class="col-auto ms-auto">
@@ -191,21 +195,17 @@
        @if ($message = Session::get('success'))
        <div class="alert alert-success " role="alert">
            <strong><p>{{ $message }}</p></strong>
-           <div class="text-right">
-           <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
+           <div class="text-end">
+           <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
            </div>
-           </button>
          </div>
        @endif
        </div>
-       
-       
        <!--<div style="overflow: scroll;">-->
-      
-        <div class="dataTables_wrapper">
     <!--<div class="table-responsive">-->
-       <table id="datasip" class="table table-bordered table-striped ">
-        <thead>                   
+       <table id="datasip" class="table  table-bordered table-striped table-light text-center">
+        <thead>   
+                          
             <tr class="">
                 <th class="" >NO</th>
                 <th class="" >FOTO</th>
@@ -231,40 +231,41 @@
                 <th class="" >AWAL MASA KERJA</th>
                 <th class="" >TANGGAL MASUK</th>
                 <th class="" >BERAKHIR</th>
-                <th>PENGHARGAAN</th>
+                <th class="">PENGHARGAAN</th>
                 <th class="" >ACTION</th>
                 
             </tr>
+            
         </thead>
         @php
             $nomor = 1 + (($pegawais->currentPage()-1) * $pegawais->perPage());
         @endphp
             @foreach ($pegawais as $pegawai)
             <tr id="side{{$pegawai->id}}"> 
-                <td class="fourth-column table-info">{{ $nomor++ }}</td>
-                <td class="third-column table-info"><img width="120px" src="{{ asset('/data_file/'.$pegawai->foto)}}"> </td>
-                <td class="first-column table-info">{{ $pegawai->nama }}</td>
-                <td class="second-column table-info">{{ $pegawai->jabatan_id}}</td>
+                <td class="table-info">{{ $nomor++ }}</td>
+                <td class="table-info"><img width="120px" src="{{ asset('/data_file/'.$pegawai->foto)}}"> </td>
+                <td class="table-info">{{ $pegawai->nama }}</td>
+                <td class="table-info">{{ $pegawai->jabatan_id}}</td>
                 <td class="">{{ $pegawai->jk }}</td>
                 <td class="">{{ $pegawai->noktp }}</td>
-                <td class="col-3">{{ $pegawai->npwp}}</td>
-                <td class="col-3">{{ $pegawai->nobpjs }}</td>
-                <td class="col-3">{{ $pegawai->nokk }}</td>
-                <td class="col-3">{{ $pegawai->tempatlahir}}</td>
-                <td class="col-3">{{ $pegawai->ttl }}</td>
-                <td class="col-3">{{ $pegawai->alamatktp}}</td>
-                <td class="col-3">{{ $pegawai->domisili}}</td>
-                <td class="col-3">{{ $pegawai->gaji }} </td>
-                <td class="col-3">{{ $pegawai->tanggalgaji }}</td>
-                <td class="col-3">{{ $pegawai->norek}}</td>
-                <td class="col-3">{{ $pegawai->bankfungsi->banksip}}</td>
-                <td class="col-3">{{ $pegawai->email}}</td>
-                <td class="col-3">{{ $pegawai->nohp }}</td>
-                <td class="col-3">{{ $pegawai->status}}</td>
-                <td class="col-3">{{ $pegawai->tanggungan}}</td>
-                <td class="col-3">{{ $pegawai->awalmasuk}}</td>
-                <td class="col-3">{{ $pegawai->tanggalmasuk}}</td>
-                <td class="col-3">{{ $pegawai->berakhir }}</td>
+                <td class="">{{ $pegawai->npwp}}</td>
+                <td class="">{{ $pegawai->nobpjs }}</td>
+                <td class="">{{ $pegawai->nokk }}</td>
+                <td class="">{{ $pegawai->tempatlahir}}</td>
+                <td class="">{{ $pegawai->ttl }}</td>
+                <td class="">{{ $pegawai->alamatktp}}</td>
+                <td class="">{{ $pegawai->domisili}}</td>
+                <td class="">{{ $pegawai->gaji }} </td>
+                <td class="">{{ $pegawai->tanggalgaji }}</td>
+                <td class="">{{ $pegawai->norek}}</td>
+                <td class="">{{ $pegawai->bankfungsi->banksip}}</td>
+                <td class="">{{ $pegawai->email}}</td>
+                <td class="">{{ $pegawai->nohp }}</td>
+                <td class="">{{ $pegawai->status}}</td>
+                <td class="">{{ $pegawai->tanggungan}}</td>
+                <td class="">{{ $pegawai->awalmasuk}}</td>
+                <td class="">{{ $pegawai->tanggalmasuk}}</td>
+                <td class="">{{ $pegawai->berakhir }}</td>
                 <td>
                <ul style="text-align: left;">
                     @foreach($pegawai->penghargaanfungsi as $p)
@@ -273,51 +274,39 @@
                 </ul>
                 </td>
 
-                <td>
-                   {{$pegawai->penghargaanfungsi->penghargaan->penghargaansip}} 
-                </td>
-                
-               
-                <td class="col-2">
+                <td class="">
                     <form action="{{ route('pegawais.destroy',$pegawai->id) }}" method="POST">
     
-                        <a class="btn btn-info glyphicon glyphicon-user" href="{{ route('pegawais.show',$pegawai->id)}}"></a>
+                        <a  class="btn btn-info bi bi-person-fill" href="{{ route('pegawais.show',$pegawai->id)}}"></a>
 
-                        
-     
-                        <a class="btn btn-primary glyphicon glyphicon-pencil" href="{{ route('pegawais.edit',$pegawai->id) }}"></a>
-       
+                        <a class="btn btn-primary bi bi-pencil-fill"  href="{{ route('pegawais.edit',$pegawai->id) }}"></a>       
                         @csrf
                         @method('DELETE')
-          
                        <!--<button type="submit" onclick="return confirm('sure?')" class="btn btn-danger glyphicon glyphicon-trash"></button>-->
-
-                    
-
-                       
-                       <a href="javascript:void(0)" onclick="destroy({{ $pegawai->id }})" class="btn btn-danger glyphicon glyphicon-trash"></a>
+                       <a href="javascript:void(0)" onclick="destroy({{ $pegawai->id }})"  class="btn btn-danger bi bi-trash-fill"></a>
 
                     </form>
                 </td>
             </tr>
             @endforeach 
         </table>
+        <div class="d-flex justify-content-end">
         {{ $pegawais->links()}}
         </div>
-    
+    </div>
+        
+   
     <script>
       $(document).ready(function() {
         var table = $('#datasip').DataTable( {
         scrollY:        "500px",
         scrollX:        true,
         scrollCollapse: true,
-        paging:         false,
+        paging:         true,
         fixedColumns:   {
-            left: 0,
+            left: 4,
             right: 0
         }
-      
-       
     } );
 } );
    // delete
@@ -339,118 +328,25 @@
         }
     }
 
+   // $('#submit').click(function(){
+  //$(this).addClass('button_loader').attr("value","");
+  //window.setTimeout(function(){
+    //$('#submit').removeClass('button_loader').attr("value","\u2713");
+    //$('#submit').prop('disabled', true);
+  //}, 2);
+ //});
     </script>
-    @endsection
-
-   
-
-    
 </div>
 </div>
 </div>
 </div>
 </div>
-
-           
-
+@endsection
 
 
 
 
 
- <!-- <div class="container-fluid">
-    <table id="productSizes" class="table table-striped table-bordered">
-        <thead>
-            <tr class="d-flex">
-                <th class="col-1">Size</th>
-                <th class="col-3">Bust</th>
-                <th class="col-3">Waist</th>
-                <th class="col-5">Hips</th>
-                <th class="col-3">Waist</th>
-                <th class="col-3">Waist</th>
-                <th class="col-3">Waist</th>
 
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="d-flex">
-                <td class="col-1">6</td>
-                <td class="col-3">79 - 81</td>
-                <td class="col-3">61 - 63</td>
-                <td class="col-5">89 - 91</td>
-            </tr>
-            <tr class="d-flex">
-                <td class="col-1">8</td>
-                <td class="col-3">84 - 86</td>
-                <td class="col-3">66 - 68</td>
-                <td class="col-5">94 - 96</td>
-                <td class="col-3">61 - 63</td>
-                <td class="col-3">61 - 63</td>
-                <td class="col-3">61 - 63</td>
-            </tr>
-        </tbody>
-    </table>
-    -->
-    <br>
-    <br>
-   <!-- <form >
-        <div class ="row" >
         
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="namadepan" class="control-label">Nama Depan</label>
-                    <input type="text" class="form-control" id="namadepan" placeholder="Nama Depan">
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="namadepan" class="control-label">Nama Belakang</label>
-                    <input type="text" class="form-control" id="namadepan" placeholder="Nama Depan">
-                </div>
-            </div>
-        
-        </div>
-    
-        <div class="row">
-            <div class="col-md-3">
-                <div class = "form-group">
-                    <label for = "name">Jenis Kelamin</label>
-                    <select class = "form-control">
-                        <option>Laki-laki</option>
-                        <option>Perempuan</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class = "form-group">
-                    <label for = "name">Status</label>
-                    <div class="radio">
-                        <label><input type="radio" name="optradio">Menikah</label>
-                    </div>
-                    <div class="radio">
-                        <label><input type="radio" name="optradio">Belum Menikah</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="alamatanda" class="control-label">Alamat</label>
-                    <input type="email" class="form-control" id="alamatanda" placeholder="Alamat lengkap">
-                </div>
-                <div class="form-group">
-                    <label for="komentaranda" class="control-label">Komentar</label>
-                    <textarea class="form-control" id="komentaranda" placeholder="Komentar anda" rows="3"></textarea>
-                </div>
-                <div class="checkbox">
-                    <label><input type="checkbox">Berlangganan</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Send</button>
-            </div>
-        </div>
-        </form>
-    </div>
-    </body>
-    </html> 
--->
+ 

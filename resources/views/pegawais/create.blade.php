@@ -208,7 +208,7 @@
                 </select>
 
             </div>
-            <button type="submit" class="btn btn-primary">Simpan</button>
+            <button type="submit" id="btn-submit" class="btn btn-primary">Simpan</button>
             <a class="btn btn-success" href="{{ route('pegawais.index')}}">Kembali</a>
             </form>
             </div>
@@ -235,6 +235,10 @@ Css js dropdown select multiple pada penghargaan
             });
 
         });
-
+        $(function () {
+        $('form').on('submit', function() {
+            $('#btn-submit').html('Loading ...')
+        });
+    });
     </script>
 @endsection

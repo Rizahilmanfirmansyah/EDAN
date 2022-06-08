@@ -194,16 +194,15 @@
                 <div class="form-group">
                     <label for="penghargaan">Penghargaan</label>
                     <select id="paket" name="paket[]" class="form-control" multiple>
-                        
-
+                       
                         @foreach($penghar as $item)
                         <option value="{{$item->id}}">{{$item->penghargaansip}}</option>
                         @endforeach
 
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Simpan</button>
-                <a class="btn btn-success" href="{{ route('pegawais.index')}}">Kembali</a>
+                <button type="submit" id="btn-submit" class="btn btn-primary">Simpan</button>
+                <a class="btn btn-success" type="submit" id="btn-submit"  href="{{ route('pegawais.index')}}">Kembali</a>
                 </form>
                     </div>
                 </div>
@@ -216,8 +215,7 @@ Css Js form penghargaan
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
     <script>
 
@@ -230,6 +228,21 @@ Css Js form penghargaan
             });
 
         });
+
+        $('#submit').click(function(){
+        $(this).addClass('button_loader').attr("value","");
+       window.setTimeout(function(){
+       $('#submit').removeClass('button_loader').attr("value","\u2713");
+       $('#submit').prop('disabled', true);
+
+  }, 2);
+ });
+
+ $(function () {
+        $('form').on('submit', function() {
+            $('#btn-submit').html('Loading ...')
+        });
+    });
 
     </script>
 @endsection

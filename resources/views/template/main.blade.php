@@ -24,10 +24,10 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="../../index3.html" class="nav-link">Home</a>
+        <a href="{{ url ('yoi')}}" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="{{ url ('yoi')}}" class="nav-link">Contact</a>
       </li>
     </ul>
 
@@ -55,7 +55,7 @@
         </div>
       </li>
 
-      <!-- Messages Dropdown Menu -->
+      <!-- Messages Dropdown Menu 
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-comments"></i>
@@ -63,7 +63,7 @@
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <a href="#" class="dropdown-item">
-            <!-- Message Start -->
+             Message Start
             <div class="media">
               <img src="../../dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
@@ -75,11 +75,11 @@
                 <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
               </div>
             </div>
-            <!-- Message End -->
+             Message End 
           </a>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
-            <!-- Message Start -->
+             Message Start 
             <div class="media">
               <img src="../../dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
@@ -91,11 +91,11 @@
                 <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
               </div>
             </div>
-            <!-- Message End -->
+             Message End 
           </a>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
-            <!-- Message Start -->
+             Message Start 
             <div class="media">
               <img src="../../dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
@@ -107,13 +107,14 @@
                 <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
               </div>
             </div>
-            <!-- Message End -->
+             Message End 
           </a>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
         </div>
       </li>
-      <!-- Notifications Dropdown Menu -->
+    -->
+      <!-- Notifications Dropdown Menu 
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
@@ -140,6 +141,7 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
+-->
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
@@ -157,20 +159,21 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="../../index3.html" class="brand-link">
-      <img src="admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a style="text-decoration: none;" href="https://scola.id/" class="brand-link">
+      <img src="https://i.ibb.co/7nsXchf/scl.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
 
+    
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div  class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="https://i.ibb.co/7nsXchf/scl.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a style="text-decoration: none;" href="#" class="d-block">OK</a>
         </div>
       </div>
 
@@ -187,7 +190,7 @@
       </div>
 
       <!-- Sidebar Menu -->
-    @include('menu')
+    @include('template.menu')
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
@@ -200,7 +203,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>
+            <h1 >
             @yield('judul')    
             </h1>
           </div>
@@ -219,14 +222,14 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
+<!--
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.2.0
     </div>
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
   </footer>
-
+-->
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -236,7 +239,7 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<!--<script src="{{ asset('admin/plugins/jquery/jquery.min.js')}}"></script>-->
+
 <!-- Bootstrap 4 -->
 <script src="{{ asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
