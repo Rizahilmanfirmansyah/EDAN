@@ -21,4 +21,5 @@ class pegawai_penghargaan extends Model
     //{
       //  return $this->belongsTo(penghargaan::class);
     //}
+    
 } 

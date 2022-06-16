@@ -1,7 +1,6 @@
 
 @extends('pegawais.layout')
 
-
 @section('content')
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
@@ -201,11 +200,13 @@
          </div>
        @endif
        </div>
+      <a href="{{route('pegawais.create')}}" class="btn btn-success">Tambah Pegawai</a>
+       <br>
+       <br>
        <!--<div style="overflow: scroll;">-->
     <!--<div class="table-responsive">-->
        <table id="datasip" class="table  table-bordered table-striped table-light text-center">
-        <thead>   
-                          
+        <thead>    
             <tr class="">
                 <th class="" >NO</th>
                 <th class="" >FOTO</th>
@@ -231,9 +232,8 @@
                 <th class="" >AWAL MASA KERJA</th>
                 <th class="" >TANGGAL MASUK</th>
                 <th class="" >BERAKHIR</th>
-                <th class="">PENGHARGAAN</th>
+                <th class="" >PENGHARGAAN</th>
                 <th class="" >ACTION</th>
-                
             </tr>
             
         </thead>
@@ -277,7 +277,7 @@
                 <td class="">
                     <form action="{{ route('pegawais.destroy',$pegawai->id) }}" method="POST">
     
-                        <a  class="btn btn-info bi bi-person-fill" href="{{ route('pegawais.show',$pegawai->id)}}"></a>
+                        <a class="btn btn-success bi bi-person-fill" href="{{ route('pegawais.show',$pegawai->id)}}"></a>
 
                         <a class="btn btn-primary bi bi-pencil-fill"  href="{{ route('pegawais.edit',$pegawai->id) }}"></a>       
                         @csrf
@@ -307,8 +307,8 @@
             left: 4,
             right: 0
         }
-    } );
-} );
+    });
+});
    // delete
    function destroy(id)
     {

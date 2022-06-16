@@ -1,7 +1,4 @@
 @extends('template.main')
-@section('judul')
-    Input Data Pegawai
-@endsection
 @section('isi')
 <!DOCTYPE html>
 <html>

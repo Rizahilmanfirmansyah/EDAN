@@ -6,6 +6,8 @@ use App\Models\pegawai;
 use App\Models\Jabatan;
 use App\Models\bank;
 use App\Models\penghargaan;
+use App\Models\perizinan;
+use DataTables;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
@@ -68,16 +70,16 @@ class PegawaisController extends Controller
             'tanggalmasuk' => 'required',
             'berakhir' => 'required'
         ]);
-      // $file = $request->file('foto');
-        //$nama_file = time()."_".$file->getClientOriginalName();
-        //$tujuan_upload = 'data_file';
-        //$file->move($tujuan_upload,$nama_file);
+        $file = $request->file('foto');
+        $nama_file = time()."_".$file->getClientOriginalName();
+        $tujuan_upload = 'data_file';
+        $file->move($tujuan_upload,$nama_file);
 
-      $foto = $request->file('foto');
-       $foto->storeAs('/data_file/', $foto->hashName());
+      // $foto = $request->file('foto');
+       //$foto->storeAs('/data_file/', $foto->hashName());
 
         $pegawai = pegawai::create([
-            'foto' =>$foto->hashName(),
+            'foto' =>$nama_file,
             'nama' => $request->nama,
             'jabatan_id' => $request->jabatan_id,
             'jk' => $request->jk,
@@ -202,14 +204,20 @@ class PegawaisController extends Controller
         } else {
     
             //hapus old image
-            Storage::disk('local')->delete('/data_file/'.$pegawai->foto);
+           // Storage::disk('local')->delete('/data_file/'.$pegawai->foto);
     
             //upload new image
-            $foto = $request->file('foto');
-            $foto->storeAs('/data_file/', $foto->hashName());
+            //$foto = $request->file('foto');
+            //$foto->storeAs('/data_file/', $foto->hashName());
+
+        $file = $request->file('foto');
+        $nama_file = time()."_".$file->getClientOriginalName();
+        $tujuan_upload = 'data_file';
+        $file->move($tujuan_upload,$nama_file);
+
     
             $pegawai->update([
-            'foto'=> $foto->hashName(),
+            'foto'=> $nama_file,
             'nama' => $request->nama,
             'jabatan_id' => $request->jabatan_id,
             'jk' => $request->jk,
@@ -236,15 +244,8 @@ class PegawaisController extends Controller
 
         }
     
-        
-
-
-
-        
-
         $pegawai->penghargaanfungsi()->attach($request->paket);
-
-
+        
         $pegawai->update($request->all());
         return redirect()->route('pegawais.index')
          ->with('success', 'Update sukses.');
@@ -284,5 +285,54 @@ class PegawaisController extends Controller
         //return $pegawais;
 
     }
+
+    public function cuti(Request $request)
+    {
+        $perizinan = perizinan::all();
+        return view('pegawais.cuti', compact('perizinan'));
+       // if($request->ajax()){
+         //   $data = perizinan::latest()->get();
+           // return Datatables::of($data)
+            //->addcutiColumn()
+            //->addColumn('action', function($row){
+              //  $btn = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editProduct">Edit</a>';
+
+                //$btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteProduct">Delete</a>';
+
+                //return $btn;
+            //})
+            //->rawColumns(['action'])
+            //->make(true);
+        //}
+        return view('pegawais.cuti', compact('perizinan'));
+
+    }
     
+    public function createcuti()
+    {
+        $perizinancreate = perizinan::all();
+
+        return view('pegawais.tambahcuti', compact('perizinancreate')); 
+
+    }
+
+    public function storecuti(Request $request)
+    {
+        $this->validate($request, [
+            'tanggalpemohon '=>'required',
+            'nama' =>'required',
+            'jabatan' => 'required',
+            'awalcuti'=>'required',
+            'akhircuti'=>'required',
+            'lamacuti'=>'required',
+            'ket'=>'required',
+
+        ]);
+
+        perizinan::create($request->all());
+        return redirect()->url('cuti');
+      // perizinan::updateOrCreate(['id' => $request->id],
+       //['tanggalpemohon' => $request->tanggalpemohon, 'nama' => $request->nama, 'awalcuti' => $request->awalcuti, 'akhircuti' => $request->akhircuti, 'lamacuti'=>$request->lamacuti, 'jeniscuti'=>$request->jeniscuti, 'ket' => $request->ket]);
+       //return response()->json(['success'=>'OK']);
+    }
 }

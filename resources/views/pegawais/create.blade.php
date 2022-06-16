@@ -76,7 +76,7 @@
         -->
         <p>
            <div>
-                <label for="jk">JENIS KELAMIN</label>
+                <label class="font-weight-bold" for="jk">JENIS KELAMIN</label>
                 <p><input type="radio" name="jk"  value="L" checked <? $pegawai['jk'] == "L" ?> >Pria  &nbsp; <input type="radio" name="jk"  value="P" <? $pegawai['jk'] == "P"?> >Wanita</p>
             </div>
         </p>
@@ -98,7 +98,7 @@
                 <input type="text" name="nokk" class="form-control" id="nokk" aria-describedby="nokk" placeholder="Masukan No KK">
             </div>
             <div class="form-group">
-                <label for="tempatlahir">Tempat Lahir</label>
+                <label for="tempatlahir">TEMPAT LAHIR</label>
                 <input type="text" name="tempatlahir" class="form-control" id="tempatlahir" aria-describedby="tempatlahir" placeholder="Masukan Tempat Lahir">
             </div>
             <div class="form-group">

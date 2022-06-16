@@ -7,7 +7,7 @@
   <title>Data Pegawai</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
  <!-- Font Awesome -->
  <link rel="stylesheet" href="{{ asset('admin/plugins/fontawesome-free/css/all.min.css') }}">
  <!-- Theme style -->
@@ -33,11 +33,14 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
+      <!-- Navbar Search 
       <li class="nav-item">
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
           <i class="fas fa-search"></i>
         </a>
+        -->
+      
+        
         <div class="navbar-search-block">
           <form class="form-inline">
             <div class="input-group input-group-sm">
@@ -147,11 +150,13 @@
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
+      <!--Pengaturan widget harus dengan demo.js
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
           <i class="fas fa-th-large"></i>
         </a>
       </li>
+    -->
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -159,25 +164,26 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a style="text-decoration: none;" href="https://scola.id/" class="brand-link">
+    <!--<a style="text-decoration: none;" href="https://scola.id/" class="brand-link">
       <img src="https://i.ibb.co/7nsXchf/scl.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
-    </a>
+    </a>-->
 
-    
     <!-- Sidebar -->
     <div class="sidebar">
+    <br>
+     <!-- <img src="https://i.ibb.co/XZz9KXZ/scl3.png"  class="img-thumbnail" alt="">-->
       <!-- Sidebar user (optional) -->
-      <div  class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div  class="user-panel mt-1 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="https://i.ibb.co/7nsXchf/scl.png" class="img-circle elevation-2" alt="User Image">
+          <img src="https://i.ibb.co/7nsXchf/scl.png"  class="brand-image img-circle elevation-3" alt="">
         </div>
-        <div class="info">
-          <a style="text-decoration: none;" href="#" class="d-block">OK</a>
+       <div class="info">
+          <a style="text-decoration: none;" href="https://scola.id/" class="d-block">SCOLA LMS</a>
         </div>
       </div>
 
-      <!-- SidebarSearch Form -->
+      <!-- SidebarSearch Form search warning -->
       <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
           <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
@@ -203,7 +209,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 >
+            <h1>
             @yield('judul')    
             </h1>
           </div>
@@ -244,7 +250,9 @@
 <script src="{{ asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('admin/dist/js/adminlte.min.js')}}"></script>
-<!-- AdminLTE for demo purposes -->
+<!-- AdminLTE for demo purposes 
 <script src="{{ asset('admin/dist/js/demo.js')}}"></script>
+-->
+
 </body>
 </html>
