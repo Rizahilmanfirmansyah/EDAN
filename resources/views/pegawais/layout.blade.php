@@ -14,7 +14,7 @@
     <body >
             @yield('content')
            
-        @livewireScripts
+        
         <script>
             document.querySelectorAll('input[type-currency="IDR"]').forEach((element) => {
              element.addEventListener('keyup', function(e) {

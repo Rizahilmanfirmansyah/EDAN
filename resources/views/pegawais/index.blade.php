@@ -148,48 +148,12 @@
    .first-column.header {
        background-color: aliceblue;
     }
+   
      </style>
 
        <div class="container">
         <div class="row">       
        <div class="col-md-12">
-        <!--
-        <div class="">
-            <img src="{{ asset('poto/download.png')}}">
-        </div>
-    -->
-        
-        <!--
-        <div class="row">
-            <div class="col-lg-12 margin-tb mt-3 mb-3">
-                <div class="text-center">
-                    <h2>  KELOLA DATA PEGAWAI </h2>
-                </div>
-            <div class="col-mb-3">
-                <div class="text-left">
-                    <input type="submit" id="submit" value="submit" href="{{route('pegawais.create')}}">
-                  
-                    <a class="btn btn-success"  href="{{ route('pegawais.create') }}">Tambah</a>
-                 
-                </div> 
-            </div> 
-            </div>
-        </div>
-        -->
-     <!--  <div class="row">
-         <div class="col-mb-3">
-           <form action="/search" class="col-auto ms-auto">
-            <div class="input-group">
-               <input type="text" name="search" value="{{ request()->search }}" placeholder="Search" class="form-control">
-              <br><br>
-               <button class="btn btn-primary" type="submit">Search</button>
-               &nbsp;
-               <a class="btn btn-primary" href="{{ route('pegawais.index')}}">Refresh</a>
-            </div>
-          </div>
-        </form>
-       </div> 
-    -->
        <div>
        @if ($message = Session::get('success'))
        <div class="alert alert-success " role="alert">
@@ -200,9 +164,7 @@
          </div>
        @endif
        </div>
-      <a href="{{route('pegawais.create')}}" class="btn btn-success">Tambah Pegawai</a>
-       <br>
-       <br>
+     <!-- <a href="{{route('pegawais.create')}}" class="btn btn-success">Tambah Pegawai</a>-->
        <!--<div style="overflow: scroll;">-->
     <!--<div class="table-responsive">-->
        <table id="datasip" class="table  table-bordered table-striped table-light text-center">
@@ -242,7 +204,7 @@
         @endphp
             @foreach ($pegawais as $pegawai)
             <tr id="side{{$pegawai->id}}"> 
-                <td class="table-info">{{ $nomor++ }}</td>
+                <td class="table-info">{{$nomor++}}</td>
                 <td class="table-info"><img width="120px" src="{{ asset('/data_file/'.$pegawai->foto)}}"> </td>
                 <td class="table-info">{{ $pegawai->nama }}</td>
                 <td class="table-info">{{ $pegawai->jabatan_id}}</td>
@@ -301,6 +263,7 @@
         var table = $('#datasip').DataTable( {
         scrollY:        "500px",
         scrollX:        true,
+        bAutoWidth:     false, 
         scrollCollapse: true,
         paging:         true,
         fixedColumns:   {

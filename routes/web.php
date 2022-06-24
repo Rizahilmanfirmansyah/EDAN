@@ -26,7 +26,7 @@ Route::resource('pegawais', PegawaisController::class);
 Route::resource('perizinan', PerizinanController::class);
 
 Route::get('/ok', function(){
-    return view('main');
+    return view('perizinan.dashboard');
 });
 
 Route::get('/coba', function(){
@@ -56,6 +56,12 @@ Route::get('/createcuti', [PegawaisController::class, 'createcuti']);
 Route::post('/tambahcuti', [PegawaisController::class, 'storecuti']);
 
 Route::delete('/del/{id}',[PerizinanController::class, 'delete'])->name('delete');
+
+Route::get('/jumlah',[PerizinanController::class, 'jumlah']);
+
+Route::get('/home', [PegawaisController::class, 'home']);
+
+Route::get('/dash', [PerizinanController::class, 'nama']);
 
 
 

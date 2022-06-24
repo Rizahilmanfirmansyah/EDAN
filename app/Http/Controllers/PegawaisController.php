@@ -210,14 +210,14 @@ class PegawaisController extends Controller
             //$foto = $request->file('foto');
             //$foto->storeAs('/data_file/', $foto->hashName());
 
-        $file = $request->file('foto');
-        $nama_file = time()."_".$file->getClientOriginalName();
-        $tujuan_upload = 'data_file';
-        $file->move($tujuan_upload,$nama_file);
+       // $file = $request->file('foto');
+        //$nama_file = time()."_".$file->getClientOriginalName();
+        //$tujuan_upload = 'data_file';
+        //$file->move($tujuan_upload,$nama_file);
 
     
             $pegawai->update([
-            'foto'=> $nama_file,
+            'foto'=> $request->foto,
             'nama' => $request->nama,
             'jabatan_id' => $request->jabatan_id,
             'jk' => $request->jk,
@@ -335,4 +335,11 @@ class PegawaisController extends Controller
        //['tanggalpemohon' => $request->tanggalpemohon, 'nama' => $request->nama, 'awalcuti' => $request->awalcuti, 'akhircuti' => $request->akhircuti, 'lamacuti'=>$request->lamacuti, 'jeniscuti'=>$request->jeniscuti, 'ket' => $request->ket]);
        //return response()->json(['success'=>'OK']);
     }
+    public function home()
+    {
+        $jumlah = pegawai::count();
+        $izin = perizinan::count('nama');
+        return view('pegawais.home', compact('jumlah', 'izin'));
+    }
+  
 }

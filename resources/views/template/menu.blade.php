@@ -5,23 +5,67 @@
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
       <!-- Add icons to the links using the .nav-icon class
            with font-awesome or any other icon font library -->
+           <li class="nav-item">
+            <a href="{{url('/home')}}" class="nav-link">
+              <i class="nav-icon bi bi-clipboard-fill"></i>
+              <p>
+                Dashboard
+              </p>
+            </a>
+          </li>
      <li class="nav-item">
         <a href="{{route('pegawais.index')}}" class="nav-link">
           <i class="nav-icon bi bi-people-fill"></i>
-          <p id="ok">
+          <p>
             Data Pegawai
-         <!-- <i class="right fas fa-angle-left"></i>-->
+         <i class="right fas fa-angle-left"></i>
           </p>
         </a>
+
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{{route('pegawais.index')}}" class="nav-link">
+              <i class="nav-icon bi bi-table"></i>
+                Table Pegawai
+              </p>
+            </a>
+          </li>
+           <li class="nav-item">
+                <a href="{{route('pegawais.create')}}" class="nav-link">
+                  <i class="nav-icon bi bi-person-plus-fill"></i>
+                  <p>
+                    Tambah Pegawai
+                  </p>
+                </a>
+              </li>
+          </ul>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" >
         <a href="{{ route('perizinan.index') }}" class="nav-link">
           <i class="nav-icon bi bi-envelope-paper-fill"></i>
           <p>
             Data Perizinan
-           <!-- <i class="right fas fa-angle-left"></i> -->
+           <i class="right fas fa-angle-left"></i> 
           </p>
         </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{{ route('perizinan.index') }}" class="nav-link">
+              <i class="nav-icon bi bi-table"></i>
+              <p>
+                Tabel Perizinan
+              </p>
+            </a>
+          </li>
+        <li class="nav-item">
+          <a href="{{ route('perizinan.create') }}" class="nav-link">
+            <i class="nav-icon bi bi-envelope-plus-fill"></i>
+            <p>
+              Tambah Perizinan
+            </p>
+          </a>
+        </li>
+    </ul>
       </li>
       
 
@@ -107,4 +151,14 @@
       $('#sip').toggle("slow");
 
     });
+    var toggler = document.getElementsByClassName("caret");
+    var i;
+
+for (i = 0; i < toggler.length; i++) {
+  toggler[i].addEventListener("click", function() {
+    this.parentElement.querySelector(".nested").classList.toggle("active");
+    this.classList.toggle("caret-down");
+  });
+}
+   
   </script>

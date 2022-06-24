@@ -9,8 +9,15 @@ class perizinan extends Model
 {
     use HasFactory;
     protected $table = "tblcuti";
+    protected $primaryKey = "id";
     protected $fillable = [
         "nama","awalcuti","akhircuti","ket"
 
     ];
+
+    public function pegawaifungsi()
+    {
+        return $this->belongsTo(pegawai::class, 'id', 'nama');
+    }
+
 }

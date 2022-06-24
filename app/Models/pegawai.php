@@ -37,6 +37,11 @@ class pegawai extends Model
         return $this->belongsToMany(penghargaan::class);
     }
 
+    public function perizinanfungsi()
+    {
+      return $this->hashMany(perizinan::class, 'id','nama');
+    }
+
   // public function penghargaanfungsi()
     // {
       //   return $this->hasMany(pegawai_penghargaan::class);

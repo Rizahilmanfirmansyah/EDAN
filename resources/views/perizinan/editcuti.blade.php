@@ -1,12 +1,24 @@
 @extends('pegawais.layout')
 
 @section('content')
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
+  
+<link rel="stylesheet" type="text/css" href=" https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap5.min.css">
+
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/fixedcolumns/4.1.0/js/dataTables.fixedColumns.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
 
 <div class="row justify-content-center align-items-center">
 <div class="card" style="width: 25rem;">
     <div class="card-header">
-        OK
+        EDIT PERIZINAN
     </div>
     <div class="card-body">
         @if ($errors->any())
@@ -24,7 +36,23 @@
         @method('PUT')
         <div class="form-group">
             <label for="nama">NAMA</label>
-            <input type="text" class="form-control" value="{{$perizinan->nama}}" name="nama">
+            <select name="nama" class="form-select" >
+                <option value="{{$perizinan->nama}}">{{$perizinan->nama}}</option>
+                @foreach ($pegawais as $item)
+                <option value="{{$item->nama}}">{{$item->nama}}</option>
+                    
+                @endforeach 
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="ket">KETERANGAN</label>
+            <select class="form-select" name="ket">
+                <option value="{{$perizinan->ket}}">{{$perizinan->ket}}</option>
+                <option value="Izin">Izin</option>
+                <option value="Sakit">Sakit</option>
+                <option value="Alpha">Alpha</option>
+                <option value="Cuti">Cuti</option>
+            </select>
         </div>
         <div class="form-group">
             <label for="awalcuti">AWAL IZIN</label>
@@ -34,12 +62,8 @@
             <label for="akhircuti">AKHIR IZIN</label>
             <input type="date" class="form-control" value="{{$perizinan->akhircuti}}" name="akhircuti">
         </div>
-        <div class="form-group">
-            <label for="ket">KETERANGAN</label>
-            <textarea name="ket" class="form-control" value="{{$perizinan->ket}}">{{$perizinan->ket}}</textarea>
-        </div>
         <button type="submit" class="btn btn-success">Simpan</button>
-        <a href="{{route('perizinan.index')}}" class="btn btn-primary">Kembali</a>
+        <a href="{{route('perizinan.index')}}" class="btn btn-primary">Kembali</a> 
     </form>
 <br>
 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\perizinan;
+use App\Models\pegawai;
 use Illuminate\Http\Request;
 
 class PerizinanController extends Controller
@@ -13,8 +14,8 @@ class PerizinanController extends Controller
      */
     public function index()
     {
-        $perizinansip = perizinan::all();
-        return view('perizinan.cuti', compact('perizinansip'));
+        $perizinans = perizinan::all();
+        return view('perizinan.cuti', compact('perizinans'));
     } 
 
     /**
@@ -24,7 +25,8 @@ class PerizinanController extends Controller
      */
     public function create()
     {
-        return view('perizinan.tambahcuti');
+        $pegawais = pegawai::all();
+        return view('perizinan.tambahcuti', compact('pegawais'));
     }
 
     /**
@@ -67,7 +69,8 @@ class PerizinanController extends Controller
      */
     public function edit(perizinan $perizinan)
     {
-        return view('perizinan.editcuti', compact('perizinan'));
+        $pegawais = pegawai::all();
+        return view('perizinan.editcuti', compact('perizinan', 'pegawais'));
     }
 
     /**
@@ -100,11 +103,14 @@ class PerizinanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(perizinan $perizinan)
     {
-        $perizinan = perizinan::find($id);
-        $perizinan->delete();
-        return response()->json(['success'=>'NICE']); 
+       $perizinan->delete();
+       return redirect()->route('perizinan.index')->with('success','Delete Berhasil');
+       
+        //$perizinan = perizinan::find($id);
+        //$perizinan->delete();
+        //return response()->json(['success'=>'NICE']); 
     }
 
     public function delete($id)
@@ -112,5 +118,31 @@ class PerizinanController extends Controller
         $perizinan = perizinan::find($id);
         $perizinan->delete();
         return response()->json(['success'=>'ok']);
+    }
+
+    public function jumlah()
+    {
+        $izin = perizinan::count();
+        return view('pegawais.home', compact('izin'));
+
+    }
+    public function dash()
+    {
+        $jumlah = perizinan::all();
+        $pegawai = pegawai::all();
+        return view('perizinan.dashboard', compact('jumlah', 'pegawai'));
+    }
+    public function nama()
+    {
+        $totalnya = perizinan::groupBy('nama')
+        ->selectRaw('count(*) as count, nama')
+        ->pluck('count', 'nama');
+
+        $okeh = perizinan::where('nama','=','1')->count();
+        
+
+        $jumlah = pegawai::all();
+
+        return view('perizinan.dashboard', compact('totalnya', 'jumlah'));
     }
 }
